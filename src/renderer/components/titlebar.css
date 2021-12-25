@@ -1,0 +1,9 @@
+.TitleBar {
+  width: 100%;
+  height: 35px;
+  background-color: #151518;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  -webkit-app-region: drag;
+}
