@@ -6,7 +6,7 @@ executors:
       - image: electronuserland/builder:wine
   macos:
     macos:
-      xcode: 11.4
+      xcode: "11.4"
 
 orbs:
   node: circleci/node@2.0.0
@@ -20,22 +20,23 @@ jobs:
         type: string
     executor: << parameters.os >>
     steps:
+      - checkout
+      - node/install:
+          node-version: << parameters.node-version >>
+          install-yarn: false
       - run:
           name: "Hello!"
           command: "echo Hello, Word!!"
 
 workflows:
   publish:
-    filters:
-      branches:
-        only:
-          - main
-          - development
+    when:
+      or:
+        - equal: [main, << pipeline.git.branch >> ]
+        - equal: [development, << pipeline.git.branch >> ]
     jobs:
       - publish:
-          test:
-            matrix:
-              parameters:
-                os: [linux, macos],
-                node-version: ["16.13.0"]
-
+          matrix:
+            parameters:
+              os: [linux, macos]
+              node-version: [16.13.0]
