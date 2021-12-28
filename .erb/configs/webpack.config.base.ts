@@ -5,7 +5,7 @@
 import webpack from 'webpack';
 import webpackPaths from './webpack.paths';
 import { dependencies as externals } from '../../release/app/package.json';
-import path from 'path/posix';
+import { posix as path } from 'path';
 import GoogleFontsPlugin from '@beyonk/google-fonts-webpack-plugin';
 
 const configuration: webpack.Configuration = {
