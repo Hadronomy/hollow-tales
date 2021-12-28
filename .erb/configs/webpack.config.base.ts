@@ -44,7 +44,7 @@ const configuration: webpack.Configuration = {
     alias: {
       '@components': path.resolve(webpackPaths.srcRendererPath, 'components'),
       '@assets': path.resolve(webpackPaths.rootPath, 'assets'),
-      '@pages': path.resolve(webpackPaths.srcRendererPath, 'pages')
+      '@pages': path.resolve(webpackPaths.srcRendererPath, 'pages'),
     },
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [webpackPaths.srcPath, 'node_modules'],

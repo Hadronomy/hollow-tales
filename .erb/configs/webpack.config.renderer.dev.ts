@@ -89,14 +89,14 @@ const configuration: webpack.Configuration = {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
-          filename: './fonts/[name].[ext]'
-        }
+          filename: './fonts/[name].[ext]',
+        },
       },
       // Images
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
-        use: ['file-loader']
+        use: ['file-loader'],
       },
     ],
   },
