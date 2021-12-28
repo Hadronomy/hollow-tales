@@ -22,8 +22,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Hello!"
-          command: "echo Hello, ${GITHUB_TOKEN}"
+          name: "NPM Install"
+          command: "npm install"
+      - run:
+          name: "Package & Publish"
+          command: "npx ts-node ./.erb/scripts/clean.js dist && npm run build && npx electron-builder build --publish always --win --linux"
 
 workflows:
   publish:
