@@ -21,12 +21,9 @@ jobs:
     executor: << parameters.os >>
     steps:
       - checkout
-      - node/install:
-          node-version: << parameters.node-version >>
-          install-yarn: false
       - run:
           name: "Hello!"
-          command: "echo Hello, Word!!"
+          command: "echo Hello, ${GITHUB_TOKEN}"
 
 workflows:
   publish:
@@ -38,5 +35,8 @@ workflows:
       - publish:
           matrix:
             parameters:
-              os: [linux, macos]
+              os: [linux]
               node-version: [16.13.0]
+
+env:
+
