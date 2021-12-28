@@ -4,37 +4,27 @@
  */
 body {
   position: relative;
-  color:white;
+  color: white;
   height: 100vh;
   background-color: #121212;
-  font-family: sans-serif;
   overflow-y: hidden;
   overflow-x: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
-li {
-  list-style: none;
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
 
-a {
-  text-decoration: none;
-  height: fit-content;
-  width: fit-content;
-  margin: 10px;
+.no-drag {
+  -webkit-app-region: no-drag;
 }
 
-a:hover {
-  opacity: 1;
-  text-decoration: none;
-}
-
-.Hello {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
+.drag {
+  -webkit-app-region: drag;
 }

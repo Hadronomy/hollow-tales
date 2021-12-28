@@ -49,6 +49,7 @@ const configuration: webpack.Configuration = {
 
   module: {
     rules: [
+      // Styles
       {
         test: /\.s?(a|c)ss$/,
         use: [
@@ -67,13 +68,20 @@ const configuration: webpack.Configuration = {
       },
       {
         test: /\.s?(a|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
         exclude: /\.module\.s?(c|a)ss$/,
       },
       // Fonts
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: './fonts/[name].[ext]'
+        }
       },
       // Images
       {

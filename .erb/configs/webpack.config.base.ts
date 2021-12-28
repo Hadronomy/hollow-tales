@@ -5,6 +5,8 @@
 import webpack from 'webpack';
 import webpackPaths from './webpack.paths';
 import { dependencies as externals } from '../../release/app/package.json';
+import path from 'path/posix';
+import GoogleFontsPlugin from '@beyonk/google-fonts-webpack-plugin';
 
 const configuration: webpack.Configuration = {
   externals: [...Object.keys(externals || {})],
@@ -39,6 +41,11 @@ const configuration: webpack.Configuration = {
    * Determine the array of extensions that should be used to resolve modules.
    */
   resolve: {
+    alias: {
+      '@components': path.resolve(webpackPaths.srcRendererPath, 'components'),
+      '@assets': path.resolve(webpackPaths.rootPath, 'assets'),
+      '@pages': path.resolve(webpackPaths.srcRendererPath, 'pages')
+    },
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
     modules: [webpackPaths.srcPath, 'node_modules'],
   },
@@ -47,6 +54,14 @@ const configuration: webpack.Configuration = {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production',
     }),
+    // Donwload google fonts into build directory
+    /*
+    new GoogleFontsPlugin({
+      fonts: [
+        { family: "Roboto", variants: [ "400", "700italic" ], display: "block" }
+      ]
+    })
+    */
   ],
 };
 

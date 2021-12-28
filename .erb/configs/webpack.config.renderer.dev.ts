@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const port = process.env.PORT || 1212;
 const manifest = path.resolve(webpackPaths.dllPath, 'renderer.json');
-const requiredByDLLConfig = module.parent.filename.includes(
+const requiredByDLLConfig = require.main.filename.includes(
   'webpack.config.renderer.dev.dll'
 );
 
@@ -88,11 +88,15 @@ const configuration: webpack.Configuration = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: './fonts/[name].[ext]'
+        }
       },
       // Images
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
+        use: ['file-loader']
       },
     ],
   },
