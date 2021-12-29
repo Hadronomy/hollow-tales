@@ -45,20 +45,20 @@ jobs:
           command: "npx ts-node ./.erb/scripts/clean.js dist && npm run build && npx electron-builder build --publish always --win --linux"
 
 workflows:
-  publish:
-    when:
-      or:
-        - equal: [main, << pipeline.git.branch >> ]
-        - equal: [development, << pipeline.git.branch >> ]
-    jobs:
-      - publish:
-          filters:
-            tags:
-              only: /v.*/
-          matrix:
-            parameters:
-              os: [linux]
-              node-version: [16.13.0]
+  # publish:
+  #   when:
+  #     or:
+  #       - equal: [main, << pipeline.git.branch >> ]
+  #       - equal: [development, << pipeline.git.branch >> ]
+  #   jobs:
+  #     - publish:
+  #         filters:
+  #          tags:
+  #            only: /v.*/
+  #         matrix:
+  #           parameters:
+  #             os: [linux]
+  #             node-version: [16.13.0]
   test:
     when:
       or:
