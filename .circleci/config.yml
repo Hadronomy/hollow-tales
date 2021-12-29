@@ -58,11 +58,11 @@ workflows:
       or:
         - equal: [main, << pipeline.git.branch >> ]
         - equal: [development, << pipeline.git.branch >> ]
-      jobs:
-        - test:
-            matrix:
-              parameters:
-                os: [linux]
+    jobs:
+      - test:
+          matrix:
+            parameters:
+              os: [linux]
 
 
 env:
