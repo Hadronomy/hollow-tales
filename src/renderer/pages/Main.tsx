@@ -1,4 +1,4 @@
-import TitleBar from '@components/titlebar';
+import TitleBar from '@components/Titlebar';
 
 export default function Main() {
   return (

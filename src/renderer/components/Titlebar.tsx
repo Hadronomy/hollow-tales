@@ -1,3 +1,4 @@
+import { CloseButton, MaximizeButton, MinimizeButton } from './TitilebarButton';
 import './titlebar.css';
 
 interface TitleBarOptions {
@@ -14,7 +15,17 @@ export default function TitleBar(props: TitleBarOptions) {
           <p>{appName}</p>
         </div>
       </div>
-      <div />
+      <div
+        style={{
+          alignItems: 'end',
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}
+      >
+        <MinimizeButton />
+        <MaximizeButton />
+        <CloseButton />
+      </div>
     </div>
   );
 }

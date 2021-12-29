@@ -1,0 +1,20 @@
+.title-btn:hover {
+  background-color: rgba(78, 78, 78, 0.459);
+  border: transparent;
+}
+
+.title-btn:active {
+  border: transparent;
+}
+
+.close-btn:hover {
+  background-color: red;
+}
+
+.title-btn {
+  background-color: transparent;
+  width: 50px;
+  height: 100%;
+  border: transparent;
+  color: white;
+}
