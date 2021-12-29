@@ -1,15 +1,18 @@
 {
   "name": "hollow-tales",
+  "productName": "Hollow Tales",
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "clean": "ts-node .erb/scripts/clean.js dist",
+    "clean": "ts-node .erb/scripts/clean.js dist && ts-node .erb/scripts/clean.js release",
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
     "build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.main.prod.ts",
     "build:renderer": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.renderer.prod.ts",
     "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir src",
     "lint": "cross-env NODE_ENV=development eslint . --cache --ext .js,.jsx,.ts,.tsx",
     "package": "ts-node ./.erb/scripts/clean.js dist && npm run build && electron-builder build --publish never --win --linux",
+    "package:win": "npm run build && electron-builder build --win",
+    "package:linux": "npm run build && electron-builder build --linux",
     "postinstall": "ts-node .erb/scripts/check-native-dep.js && opencollective-postinstall",
     "start": "ts-node ./.erb/scripts/check-port-in-use.js && npm run start:renderer",
     "start:main": "cross-env NODE_ENV=development electron -r ts-node/register/transpile-only ./src/main/main.ts",
@@ -32,7 +35,7 @@
     ]
   },
   "build": {
-    "productName": "HollowTales",
+    "productName": "Hollow Tales",
     "appId": "com.hadronomy.HollowTales",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
@@ -70,9 +73,15 @@
         }
       ]
     },
+    "nsis": {
+      "perMachine": false,
+      "license": "LICENSE"
+    },
     "win": {
       "target": [
-        "nsis"
+        "nsis",
+        "nsis-web",
+        "portable"
       ]
     },
     "linux": {
@@ -92,7 +101,8 @@
     "publish": {
       "provider": "github",
       "owner": "hadronomy",
-      "repo": "hollow-tales"
+      "repo": "hollow-tales",
+      "private": false
     }
   },
   "repository": {
@@ -111,7 +121,7 @@
       "url": "https://github.com/hadronomy"
     }
   ],
-  "license": "MIT",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/hadronomy/hollow-tales/issues"
   },
