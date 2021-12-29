@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { CloseButton, MaximizeButton, MinimizeButton } from './TitilebarButton';
 import './titlebar.css';
 

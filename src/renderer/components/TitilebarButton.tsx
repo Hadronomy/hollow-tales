@@ -1,4 +1,9 @@
 import './titlebarButton.css';
+import {
+  VscClose,
+  VscChromeMinimize,
+  VscChromeMaximize,
+} from 'react-icons/vsc';
 
 function Minimize() {
   window.electron.minimize();
@@ -19,7 +24,7 @@ export function MinimizeButton() {
       type="button"
       onClick={Minimize}
     >
-      <i className="fa fa-window-minimize" />
+      <VscChromeMinimize size={20} />
     </button>
   );
 }
@@ -31,7 +36,7 @@ export function MaximizeButton() {
       type="button"
       onClick={Maximize}
     >
-      <i className="fa fa-window-maximize" />
+      <VscChromeMaximize size={20} />
     </button>
   );
 }
@@ -43,7 +48,7 @@ export function CloseButton() {
       type="button"
       onClick={Close}
     >
-      <i className="fa fa-window-close" aria-hidden="true" />
+      <VscClose size={20} />
     </button>
   );
 }
