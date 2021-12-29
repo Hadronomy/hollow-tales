@@ -42,7 +42,7 @@ jobs:
           command: "npm install"
       - run:
           name: "Package & Publish"
-          command: "npx ts-node ./.erb/scripts/clean.js dist && npm run build && npx electron-builder build --publish onTag --win --linux"
+          command: "npx ts-node ./.erb/scripts/clean.js dist && npm run build && npx electron-builder build --publish always --win --linux"
 
 workflows:
   publish:
@@ -52,6 +52,11 @@ workflows:
         - equal: [development, << pipeline.git.branch >> ]
     jobs:
       - publish:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
           matrix:
             parameters:
               os: [linux]
