@@ -23,7 +23,7 @@ jobs:
           name: "NPM Install"
           command: "npm install"
       - run:
-          name: "Build",
+          name: "Build"
           command: "npm run build:main"
       - run:
           name: "Tests"
