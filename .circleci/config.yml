@@ -12,6 +12,19 @@ orbs:
   node: circleci/node@2.0.0
 
 jobs:
+  test:
+    parameters:
+      os:
+        type: executor
+    executor: << parameters.os >>
+    steps:
+      - checkout
+      - run:
+          name: "NPM Install"
+          command: "npm install"
+      - run:
+          name: "Tests"
+          command: "npm run test"
   publish:
     parameters:
       os:
@@ -26,7 +39,7 @@ jobs:
           command: "npm install"
       - run:
           name: "Package & Publish"
-          command: "npx ts-node ./.erb/scripts/clean.js dist && npm run build && npx electron-builder build --publish always --win --linux"
+          command: "npx ts-node ./.erb/scripts/clean.js dist && npm run build && npx electron-builder build --publish onTag --win --linux"
 
 workflows:
   publish:
@@ -40,6 +53,17 @@ workflows:
             parameters:
               os: [linux]
               node-version: [16.13.0]
+  test:
+    when:
+      or:
+        - equal: [main, << pipeline.git.branch >> ]
+        - equal: [development, << pipeline.git.branch >> ]
+      jobs:
+        - test:
+            matrix:
+              parameters:
+                os: [linux]
+
 
 env:
 
