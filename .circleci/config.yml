@@ -54,9 +54,7 @@ workflows:
       - publish:
           filters:
             tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
+              only: /v.*/
           matrix:
             parameters:
               os: [linux]
